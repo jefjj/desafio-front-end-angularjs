@@ -35,7 +35,7 @@ news.prototype.createNewsRow = function (elmId) {
 			content += '			<div class="news-label">' + item.label + '</div>';
 			content += '			<div class="news-title">' + item.title + '</div>';
 			content += '			<div class="news-description">' + item.description + '</div>';
-			content += '			<div class="news-url">' + item.url + '</div>';
+			content += '			<div class="news-url"><a href="' + item.url + '"><img src="assets/media/share_icon.png" alt="Compartilhar" title="Compartilhar"></a></div>';
 			content += '		</div>';
 			content += '	</div>';
 			
@@ -69,16 +69,16 @@ news.prototype.createMainNewsRow = function (elmId, type, index) {
 			var item = this.list[i];
 
 			content += '	<div class="col-sm-6">';
-			content += '		<div class="news-main-' +  type + '-box">';
+			content += '		<div class="news-main-' +  type + '-box clearfix">';
 			content += '			<div class="news-img">';
 			content += '				<img src="assets/media/' + item.image + '" alt="' + item.label + ' - ' + item.title + '" title="' + item.title + '">';
 			content += '			</div>';
-			content += '			<div class="news-share">' + item.url + '</div>';
 			content += '			<div class="news-content">';
 			content += '				<div class="news-label">' + item.label + '</div>';
 			content += '				<div class="news-title">' + item.title + '</div>';
 			content += '				<div class="news-description">' + item.description + '</div>';
 			content += '			</div>';
+			content += '			<div class="news-share"><a href="' + item.url + '"><img src="assets/media/share_icon' + (type == 'top' ? '_white' : '') + '.png" alt="Compartilhar" title="Compartilhar"></a></div>';
 			content += '		</div>';
 			content += '	</div>';
 			
@@ -93,6 +93,7 @@ news.prototype.createMainNewsRow = function (elmId, type, index) {
 	    console.log(err.message);
 	}
 };
+//end class
 
 // Ajax request to get news data
 $.ajax({
@@ -151,17 +152,27 @@ function init (data) {
 
 }
 
-// watch .load-more-news click
-$('.load-more-news a').click(function(e){
+$(document).ready(function($) {
+	
+	// watch .load-more-news click
+	$('.load-more-news a').click(function(e){
 
-	e.preventDefault();
+		e.preventDefault();
 
-	id = $(this).attr('data-news');
+		id = $(this).attr('data-news');
 
-	if(id == "#news-brasil")
-		brasil.createNewsRow(id);
+		if(id == "#news-brasil")
+			brasil.createNewsRow(id);
 
-	if(id == "#news-mundo")
-		mundo.createNewsRow(id);
+		if(id == "#news-mundo")
+			mundo.createNewsRow(id);
+
+	});
+
+	// dlMenu
+	$( '#dl-menu' ).dlmenu({
+		animationClasses : { classin : 'dl-animate-in-2', classout : 'dl-animate-out-2' }
+	});
 
 });
+
