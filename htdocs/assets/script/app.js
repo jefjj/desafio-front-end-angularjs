@@ -29,13 +29,13 @@ news.prototype.createNewsRow = function (elmId) {
 
 			content += '	<div class="col-sm-3">';
 			content += '		<div class="news-box">';
-			content += '			<div class="news-img">';
+			content += '			<div class="news-image">';
 			content += '				<img src="assets/media/' + item.image + '" alt="' + item.label + ' - ' + item.title + '" title="' + item.title + '">';
 			content += '			</div>';
 			content += '			<div class="news-label">' + item.label + '</div>';
 			content += '			<div class="news-title">' + item.title + '</div>';
 			content += '			<div class="news-description">' + item.description + '</div>';
-			content += '			<div class="news-share">' + item.url + '</div>';
+			content += '			<div class="news-url">' + item.url + '</div>';
 			content += '		</div>';
 			content += '	</div>';
 			
@@ -152,7 +152,7 @@ function init (data) {
 }
 
 // watch .load-more-news click
-$('.load-more-news').click(function(e){
+$('.load-more-news a').click(function(e){
 
 	e.preventDefault();
 
