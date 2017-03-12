@@ -16,14 +16,15 @@
 	
 	<title>Infoglobo</title>
 	
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel='shortcut icon' href='favicon.ico' />
 	<link rel='shortcut icon' href='favicon.png' />
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	
-	<link rel="stylesheet" type="text/css" href="assets/style/component.css" />
-	<link rel="stylesheet" type="text/css" href="assets/style/all.css">
+	<link rel="stylesheet" type="text/css" href="assets/style/dlmenu.min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/style/style.min.css">
 
 	<script type="text/javascript" src="assets/script/modernizr.custom.js"></script>
 </head>
@@ -32,7 +33,7 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-3">
+				<div class="col-xs-2 col-sm-3" style="overflow-x: visible;">
 					<div id="dl-menu" class="dl-menuwrapper">
 						<button class="dl-trigger"></button>
 						<ul class="dl-menu">
@@ -76,9 +77,8 @@
 						</ul>
 					</div><!-- /dl-menuwrapper -->
 				</div>
-				<div class="col-sm-6">
-					<a href="index.html"><img id="logo" class="img-responsive center-block" src="assets/media/infoglobo_logo.png" alt="Infoglobo" title="Infoglobo"></a>
-					<h1 class="site-title">Infoglobo</h1>
+				<div class="col-xs-8 col-sm-6">
+					<h1 class="site-title" title="Infoglobo"><a href="index.html"><img id="logo" class="img-responsive center-block" src="assets/media/infoglobo_logo.png" alt="Infoglobo" title="Infoglobo"></a></h1>
 				</div>
 			</div>
 		</div>
@@ -89,6 +89,7 @@
 
 		<section id="main" class="section-main">
 			<div id="news-main-top" class="news-main"></div>
+			<hr class="visible-xs news-main-hr">
 			<div id="news-main-middle" class="news-main"></div>
 			<div id="news-main" class="news-main"></div>
 		</section>
@@ -96,7 +97,8 @@
 		<section id="advertising" class="section-advertising">
 			<div class="advertising-box">
 				<div class="advertising-item">
-					ADVERTISING 728X90
+					<span class="hidden-xs">ADVERTISING 728X90</span>
+					<span class="visible-xs">ADVERTISING 320X100</span>
 				</div>
 			</div>
 		</section>
@@ -123,10 +125,10 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6">
+				<div id="footer-logo" class="col-sm-6 footer-logo-box">
 					<img class="img-responsive" src="assets/media/infoglobo_logo_footer.png" alt="Logo Infoglobo" title="Infoglobo">
 				</div>
-				<div id="copyright" class="col-sm-6">
+				<div id="copyright" class="col-sm-6 copyright-box">
 					<div>COPYRIGHT &copy; 2017</div>
 					<div>TODOS OS DIREITOS RESERVADOS</div>
 				</div>
@@ -138,9 +140,16 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 	<!-- https://github.com/codrops/ResponsiveMultiLevelMenu - Licensed under the MIT License -->
-	<script type="text/javascript" src="assets/script/jquery.dlmenu.js"></script>
+	<script type="text/javascript" src="assets/script/jquery.dlmenu.min.js"></script>
 	
-	<script type="text/javascript" src="assets/script/app.js"></script>
+	<script type="text/javascript" src="assets/script/app.min.js"></script>
+
+	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    <script>
+        window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+        ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 
 </body>
 </html>

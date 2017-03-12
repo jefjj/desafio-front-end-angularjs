@@ -27,16 +27,23 @@ news.prototype.createNewsRow = function (elmId) {
 		for (var i = this.index; i < lastItem; i++) {
 			var item = this.list[i];
 
-			content += '	<div class="col-sm-3">';
-			content += '		<div class="news-box">';
-			content += '			<div class="news-image">';
-			content += '				<img src="assets/media/' + item.image + '" alt="' + item.label + ' - ' + item.title + '" title="' + item.title + '">';
+			if(i > 0)
+				content += '<hr class="visible-xs">';
+
+			content += '	<div class="col-sm-3 news-box">';
+			content += '		<a class="news-link" href="#news">';
+			content += '			<div class="clearfix news-box-mobile-break-content">';
+			content += '				<div class="news-img">';
+			content += '					<img class="news-image img-responsive center-block" src="assets/media/' + item.image + '" alt="' + item.label + ' - ' + item.title + '" title="' + item.title + '">';
+			content += '				</div>';
+			content += '				<div class="news-content">';
+			content += '					<span class="news-label">' + item.label + '</span>';
+			content += '					<h3 class="news-title">' + item.title + '</h3>';
+			content += '				</div>';
 			content += '			</div>';
-			content += '			<div class="news-label">' + item.label + '</div>';
-			content += '			<div class="news-title">' + item.title + '</div>';
-			content += '			<div class="news-description">' + item.description + '</div>';
-			content += '			<div class="news-url"><a href="' + item.url + '"><img src="assets/media/share_icon.png" alt="Compartilhar" title="Compartilhar"></a></div>';
-			content += '		</div>';
+			content += '			<p class="news-description">' + item.description + '</p>';
+			content += '			<a class="news-share" href="' + item.url + '"><img src="assets/media/share_icon.png" alt="Compartilhar" title="Compartilhar"></a>';
+			content += '		</a>';
 			content += '	</div>';
 			
 		}
@@ -48,6 +55,9 @@ news.prototype.createNewsRow = function (elmId) {
 
 		// append
 		elm.append(content);
+
+		// show
+		$('.news-box').fadeIn(1000);
 	}
 	catch(err) {
 	    console.log(err.message);
@@ -70,17 +80,23 @@ news.prototype.createMainNewsRow = function (elmId, type, index) {
 
 			content += '	<div class="col-sm-6">';
 			content += '		<div class="news-main-' +  type + '-box clearfix">';
-			content += '			<div class="news-img">';
-			content += '				<img src="assets/media/' + item.image + '" alt="' + item.label + ' - ' + item.title + '" title="' + item.title + '">';
-			content += '			</div>';
-			content += '			<div class="news-content">';
-			content += '				<div class="news-label">' + item.label + '</div>';
-			content += '				<div class="news-title">' + item.title + '</div>';
-			content += '				<div class="news-description">' + item.description + '</div>';
-			content += '			</div>';
-			content += '			<div class="news-share"><a href="' + item.url + '"><img src="assets/media/share_icon' + (type == 'top' ? '_white' : '') + '.png" alt="Compartilhar" title="Compartilhar"></a></div>';
+			content += '			<a class="main-news-link" href="#news">';
+			content += '				<div class="news-img">';
+			content += '					<img class="img-responsive" src="assets/media/' + item.image + '" alt="' + item.label + ' - ' + item.title + '" title="' + item.title + '">';
+			content += '					<span class="news-share visible-xs"><img src="assets/media/share_icon' + (type == 'top' ? '_white' : '') + '.png" alt="Compartilhar" title="Compartilhar"></span>';
+			content += '				</div>';
+			content += '				<div class="news-content">';
+			content += '					<span class="news-label">' + item.label + '</span>';
+			content += '					<h3 class="news-title">' + item.title + '</h3>';
+			content += '					<p class="news-description">' + item.description + '</p>';
+			content += '				</div>';
+			content += '			</a>';
+			content += '			<a class="news-share hidden-xs" href="' + item.url + '"><img src="assets/media/share_icon' + (type == 'top' ? '_white' : '') + '.png" alt="Compartilhar" title="Compartilhar"></a>';
 			content += '		</div>';
 			content += '	</div>';
+
+			if (type == "middle" && (i + 1) < lastItem)
+				content += '	<hr class="visible-xs">';
 			
 		}
 		
@@ -88,12 +104,22 @@ news.prototype.createMainNewsRow = function (elmId, type, index) {
 
 		// append
 		elm.append(content);
+
+		// show
+		$('.news-main-' +  type + '-box').fadeIn(1000);
+
+		// share on span (hack to fit layout design)
+		$('.news-main-' +  type + '-box span.news-share').click(function(e){
+			e.preventDefault();
+
+			console.log('share something amazing...');
+		});
 	}
 	catch(err) {
 	    console.log(err.message);
 	}
 };
-//end class
+// end class
 
 // Ajax request to get news data
 $.ajax({
@@ -170,7 +196,7 @@ $(document).ready(function($) {
 	});
 
 	// dlMenu
-	$( '#dl-menu' ).dlmenu({
+	$('#dl-menu').dlmenu({
 		animationClasses : { classin : 'dl-animate-in-2', classout : 'dl-animate-out-2' }
 	});
 
