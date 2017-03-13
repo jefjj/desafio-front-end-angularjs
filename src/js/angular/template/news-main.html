@@ -1,0 +1,17 @@
+<div class="col-sm-6">
+	<div class="news-main-{{ type }}-box clearfix">
+		<a class="main-news-link" href="#news">
+			<div class="news-img">
+				<img class="img-responsive" ng-src="assets/media/{{ news.image }}" alt="{{ news.label }} - {{ news.title }}" title="{{ news.title }}">
+				<span class="news-share visible-xs" ng-click="shareSomething($event)"><img ng-src="assets/media/share_icon{{ (type == 'top' ? '_white' : '') }}.png" alt="Compartilhar" title="Compartilhar"></span>
+			</div>
+			<div class="news-content">
+				<span class="news-label">{{ news.label }}</span>
+				<h3 class="news-title">{{ news.title }}</h3>
+				<p class="news-description">{{ news.description }}</p>
+			</div>
+		</a>
+		<a class="news-share hidden-xs" ng-href="{{ news.url }}"><img ng-src="assets/media/share_icon{{ (type == 'top' ? '_white' : '') }}.png" alt="Compartilhar" title="Compartilhar"></a>
+	</div>
+</div>
+<hr class="visible-xs" ng-if="type == 'middle'">

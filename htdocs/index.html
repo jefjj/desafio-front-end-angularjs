@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" ng-app="app">
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,20 +20,17 @@
 	<link rel='shortcut icon' href='favicon.ico' />
 	<link rel='shortcut icon' href='favicon.png' />
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	
 	<link rel="stylesheet" type="text/css" href="assets/style/all.min.css" />
-
 	<script type="text/javascript" src="assets/script/modernizr.custom.js"></script>
+	
 </head>
-<body>
+<body ng-controller="newsController">
 	<header>
 
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-2 col-sm-3" style="overflow-x: visible;">
-					<div id="dl-menu" class="dl-menuwrapper">
+					<dl-menu id="dl-menu" class="dl-menuwrapper">
 						<button class="dl-trigger"></button>
 						<ul class="dl-menu">
 							<li>
@@ -74,7 +71,7 @@
 								</ul>
 							</li>
 						</ul>
-					</div><!-- /dl-menuwrapper -->
+					</dl-menu><!-- /dl-menuwrapper -->
 				</div>
 				<div class="col-xs-8 col-sm-6">
 					<h1 class="site-title" title="Infoglobo"><a href="index.html"><img id="logo" class="img-responsive center-block" src="assets/media/infoglobo_logo.png" alt="Infoglobo" title="Infoglobo"></a></h1>
@@ -87,10 +84,22 @@
 	<div class="container">
 
 		<section id="main" class="section-main">
-			<div id="news-main-top" class="news-main"></div>
+			<div id="news-main-top" class="news-main">
+				<div class="row">
+					<news-main ng-repeat="news in news.data.mainTop" data-type="'top'" data-news="news"></news-main>
+				</div>
+			</div>
 			<hr class="visible-xs news-main-hr">
-			<div id="news-main-middle" class="news-main"></div>
-			<div id="news-main" class="news-main"></div>
+			<div id="news-main-middle" class="news-main">
+				<div class="row">
+					<news-main ng-repeat="news in news.data.mainMiddle" data-type="'middle'" data-news="news"></news-main>
+				</div>
+			</div>
+			<div id="news-main" class="news-main">
+				<div class="row">
+					<news-default ng-repeat="news in news.data.mainDefault" data-news="news" data-index="$index"></news-default>
+				</div>
+			</div>
 		</section>
 
 		<section id="advertising" class="section-advertising">
@@ -104,17 +113,27 @@
 
 		<section id="brasil" class="section-brasil">
 			<h2 class="section-title">BRASIL</h2>
-			<div id="news-brasil"></div>
+			<div id="news-brasil">
+				<div class="row" ng-repeat="brasil in news.data.brasil | limitTo: news.limitBrasil">
+					<hr class="visible-xs news-default-more-hr" ng-if="$index > 0">
+					<news-default ng-repeat="news in brasil" data-news="news" data-index="$index"></news-default>
+				</div>
+			</div>
 			<div class="load-more-news">
-				<a href="javascript:void(0)" data-news="#news-brasil">BRASIL +</a>
+				<a href="javascript:void(0)" ng-click="news.moreBrasil()">BRASIL +</a>
 			</div>
 		</section>
 		
 		<section id="mundo" class="section-mundo">
 			<h2 class="section-title">MUNDO</h2>
-			<div id="news-mundo"></div>
+			<div id="news-mundo">
+				<div class="row" ng-repeat="mundo in news.data.mundo | limitTo: news.limitMundo">
+					<hr class="visible-xs news-default-more-hr" ng-if="$index > 0">
+					<news-default ng-repeat="news in mundo" data-news="news" data-index="$index"></news-default>
+				</div>
+			</div>
 			<div class="load-more-news">
-				<a href="javascript:void(0)" data-news="#news-mundo">MUNDO +</a>
+				<a href="javascript:void(0)" ng-click="news.moreMundo()">MUNDO +</a>
 			</div>
 		</section>
 
@@ -136,10 +155,9 @@
 		
 	</footer>
 	
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
 	<!-- https://github.com/codrops/ResponsiveMultiLevelMenu - Licensed under the MIT License -->
-	<script type="text/javascript" src="assets/script/all.min.js"></script>
+	<script type="text/javascript" src="assets/script/components.min.js"></script>
+	<script type="text/javascript" src="assets/script/angular.min.js"></script>
 
 	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>

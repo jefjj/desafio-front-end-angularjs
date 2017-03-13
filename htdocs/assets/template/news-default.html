@@ -1,0 +1,16 @@
+<hr class="visible-xs" ng-if="index > 0">
+<div class="col-sm-3 news-box">
+	<a class="news-link" href="#news">
+		<div class="clearfix news-box-mobile-break-content">
+			<div class="news-img">
+				<img class="news-image img-responsive center-block" ng-src="assets/media/{{ news.image }}" alt="{{ news.label }} - {{ news.title }}" title="{{ news.title }}">
+			</div>
+			<div class="news-content">
+				<span class="news-label">{{ news.label }}</span>
+				<h3 class="news-title">{{ news.title }}</h3>
+			</div>
+		</div>
+		<p class="news-description">{{ news.description }}</p>
+		<a class="news-share" ng-href="{{ news.url }}"><img src="assets/media/share_icon.png" alt="Compartilhar" title="Compartilhar"></a>
+	</a>
+</div>

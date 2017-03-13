@@ -50,6 +50,9 @@ section.section-main{
 .news-box{
 	margin-bottom: 15px;
 }
+hr.news-default-more-hr{
+	margin-top: 5px;
+}
 .news-image{}
 .news-label{
 	height: 20px;
